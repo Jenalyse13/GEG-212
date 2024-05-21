@@ -6,117 +6,83 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-// 1A Add a marker to the map for New York City
-var baraclays_pizza = L.marker([40.683311452523625, -73.97619537068677]).addTo(map);
+// Marker and popup data
+var locations = [
+    {
+        coords: [40.683311452523625, -73.97619537068677],
+        title: "Fini Pizza Barclays Plaza Downtown Brooklyn",
+        imageUrl: "https://jenalyse13.github.io/GEG-212/GEG212 Images/Fini Pizza.jpg.webp"
+    },
+    {
+        coords: [40.69426080526414, -73.84961585947472],
+        title: "Paneorama Bakery & Pastry Shop",
+        imageUrl: "https://jenalyse13.github.io/GEG-212/GEG212 Images/Paneorama.jpg"
+    },
+    {
+        coords: [40.70139399691619, -74.01330340207514],
+        title: "Staten Island South Ferry",
+        imageUrl: "https://jenalyse13.github.io/GEG-212/GEG212 Images/Staten_Island_South_Ferry.jpg"
+    },
+    {
+        coords: [40.70294229941433, -74.01536271731277],
+        title: "The Battery Park",
+        imageUrl: "https://jenalyse13.github.io/GEG-212/GEG212 Images/Battery-Park-Manhattan.jpg"
+    }
+];
 
-// 1B Add a popup to the marker
-baraclays_pizza.bindPopup(`
-                          <b>Fini Pizza Barclays Plaza Downtown Brooklyn</b><br>
-                          <img src="https://jenalyse13.github.io/GEG-212/GEG212 Images/Fini Pizza.jpg.webp" style="width: 100px; height: auto;">
-                          `).openPopup();
-
-// 2A Add a marker to the map for New York City
-var paneorama = L.marker([40.69426080526414, -73.84961585947472]).addTo(map);
-
-// 2B Add a popup to the marker
-paneorama.bindPopup(`
-                    <b>Paneorama Bakery & Pastry Shop</b><br>
-                    <img src="https://jenalyse13.github.io/GEG-212/GEG212 Images/Paneorama.jpg" style="width: 100px; height: auto;">
-                          `).openPopup();
-
-
-// 3A Add a marker to the map for New York City
-var south_ferry = L.marker([40.70139399691619, -74.01330340207514]).addTo(map);
-
-// 3B Add a popup to the marker
-south_ferry.bindPopup(`
-                      <b>Staten Island South Ferry</b><br>
-                       <img src="https://jenalyse13.github.io/GEG-212/GEG212 Images/Staten_Island_South_Ferry.jpg" style="width: 100px; height: auto;">
-                          `).openPopup();
-
-// 4A Add a marker to the map for New York City
-var battery_park = L.marker([40.70294229941433, -74.01536271731277]).addTo(map);
-
-// 4B Add a popup to the marker
-battery_park.bindPopup(`
-                      <b>The Battery Park</b><br>
-                       <img src="https://jenalyse13.github.io/GEG-212/GEG212 Images/Battery-Park-Manhattan.jpg" style="width: 100px; height: auto;">
-                          `).openPopup();
-
-
-// Daytime: Load the GeoJSON line file
-fetch('https://jenalyse13.github.io/GEG-212/Jenalyse_daytimeroute.geojson')
-    .then(response => response.json())
-    .then(geojson => {
-        // Customize the style of the line
-        var lineStyle = {
-            color: 'red', // Change color as neededFDR ?
-"
-
-            weight: 5, // Change weight as needed
-            opacity: 0.7 // Change opacity as needed
-        };
-
-        // Add the GeoJSON line to the map
-        L.geoJSON(geojson, {
-            style: lineStyle
-        }).addTo(map);
-    })
-    .catch(error => {
-        console.error('Error loading GeoJSON file:', error);
-    });
-
-
-// Nighttime:Load the GeoJSON line file
-fetch('https://jenalyse13.github.io/GEG-212/Jenalyse_nighttimeroute.geojson')
-    .then(response => response.json())
-    .then(geojson => {
-        // Customize the style of the line
-        var lineStyle = {
-            color: 'red', // Change color as needed
-            weight: 5, // Change weight as needed
-            opacity: 0.7 // Change opacity as needed
-        };
-
-        // Add the GeoJSON line to the map
-        L.geoJSON(geojson, {
-            style: lineStyle
-        }).addTo(map);
-    })
-    .catch(error => {
-        console.error('Error loading GeoJSON file:', error);
-    });
-
-// 1 Load the GeoJSON polygon file
-fetch('https://jenalyse13.github.io/GEG-212/Fini Pizza Barclays Polygon.geojson')
-.then(response => response.json())
-.then(geojson => {
-    // Customize the style of the polygon
-    var polygonStyle = {
-        fillColor: 'black', // Fill color
-        fillOpacity: 0.5, // Fill opacity
-    };
-
-    // Add the GeoJSON polygon to the map
-    L.geoJSON(geojson, {
-        style: polygonStyle
-    }).addTo(map);
-})
-.catch(error => {
-    console.error('Error loading GeoJSON file:', error);
+// Add markers and popups
+locations.forEach(function(location) {
+    var marker = L.marker(location.coords).addTo(map);
+    marker.bindPopup(`
+        <b>${location.title}</b><br>
+        <img src="${location.imageUrl}" style="width: 100px; height: auto;">
+    `);
 });
 
-var categoryColors = {
-    "1": "red",
-    "2": "orange",
-    "3": "yellow",
-    "4": "green",
-    "X": "gray" // Default color for other categories
+// Function to load GeoJSON files
+function loadGeoJSON(url, style) {
+    fetch(url)
+        .then(response => response.json())
+        .then(geojson => {
+            L.geoJSON(geojson, {
+                style: style
+            }).addTo(map);
+        })
+        .catch(error => {
+            console.error('Error loading GeoJSON file:', error);
+        });
+}
+
+// Load daytime and nighttime routes
+var lineStyle = {
+    color: 'red',
+    weight: 5,
+    opacity: 0.7
+};
+loadGeoJSON('https://jenalyse13.github.io/GEG-212/Jenalyse_daytimeroute.geojson', lineStyle);
+loadGeoJSON('https://jenalyse13.github.io/GEG-212/Jenalyse_nighttimeroute.geojson', lineStyle);
+
+// Define polygon style
+var polygonStyle = {
+    fillColor: 'black',
+    fillOpacity: 0.5
 };
 
+// Load polygons
+loadGeoJSON('https://jenalyse13.github.io/GEG-212/Fini Pizza Barclays Polygon.geojson', polygonStyle);
+loadGeoJSON('https://jenalyse13.github.io/GEG-212/Paneorama polygon.geojson', polygonStyle);
+loadGeoJSON('https://jenalyse13.github.io/GEG-212/Staten Island South Ferry Polygon.geojson', polygonStyle);
+loadGeoJSON('https://jenalyse13.github.io/GEG-212/Battery Park Polygon.geojson', polygonStyle);
 
 // Function to set style based on category
 function getFeatureStyle(feature) {
+    var categoryColors = {
+        "1": "red",
+        "2": "orange",
+        "3": "yellow",
+        "4": "green",
+        "X": "gray" // Default color for other categories
+    };
     var category = feature.properties.hurricane_; // Adjust property name
     var color = categoryColors[category] || "gray"; // Default color if category not found
     var fillOpacity = category === "X" ? 0 : 0.1; // Set fill opacity to 0 for "X" category
@@ -125,61 +91,3 @@ function getFeatureStyle(feature) {
         fillOpacity: fillOpacity,
     };
 }
-
-// 2 Load the GeoJSON polygon file
-fetch('https://jenalyse13.github.io/GEG-212/Paneorama polygon.geojson')
-.then(response => response.json())
-.then(geojson => {
-    // Customize the style of the polygon
-    var polygonStyle = {
-        fillColor: 'black', // Fill color
-        fillOpacity: 0.5, // Fill opacity
-    };
-
-    // Add the GeoJSON polygon to the map
-    L.geoJSON(geojson, {
-        style: polygonStyle
-    }).addTo(map);
-})
-.catch(error => {
-    console.error('Error loading GeoJSON file:', error);
-});
-
-// 3 Load the GeoJSON polygon file
-fetch('https://jenalyse13.github.io/GEG-212/Staten Island South Ferry Polygon.geojson')
-.then(response => response.json())
-.then(geojson => {
-    // Customize the style of the polygon
-    var polygonStyle = {
-        fillColor: 'black', // Fill color
-        fillOpacity: 0.5, // Fill opacity
-    };
-
-    // Add the GeoJSON polygon to the map
-    L.geoJSON(geojson, {
-        style: polygonStyle
-    }).addTo(map);
-})
-.catch(error => {
-    console.error('Error loading GeoJSON file:', error);
-});
-
-// 4 Load the GeoJSON polygon file
-fetch('https://jenalyse13.github.io/GEG-212/Battery Park Polygon.geojson')
-.then(response => response.json())
-.then(geojson => {
-    // Customize the style of the polygon
-    var polygonStyle = {
-        fillColor: 'black', // Fill color
-        fillOpacity: 0.5, // Fill opacity
-    };
-
-    // Add the GeoJSON polygon to the map
-    L.geoJSON(geojson, {
-        style: polygonStyle
-    }).addTo(map);
-})
-.catch(error => {
-    console.error('Error loading GeoJSON file:', error);
-});
-
