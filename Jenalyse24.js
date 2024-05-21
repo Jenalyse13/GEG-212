@@ -91,3 +91,15 @@ function getFeatureStyle(feature) {
         fillOpacity: fillOpacity,
     };
 }
+// Load the GeoJSON polygon file
+fetch('https://aurashktest.github.io/aurashktest/hev.geojson')
+.then(response => response.json())
+.then(geojson => {
+    // Add the GeoJSON polygons to the map with customized style
+    L.geoJSON(geojson, {
+        style: getFeatureStyle
+    }).addTo(map);
+})
+.catch(error => {
+    console.error('Error loading GeoJSON file:', error);
+});
