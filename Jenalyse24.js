@@ -10,27 +10,34 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 var baraclays_pizza = L.marker([40.683311452523625, -73.97619537068677]).addTo(map);
 
 // 1B Add a popup to the marker
-baraclays_pizza.bindPopup("<b>Fini Pizza Barclays Plaza Downtown Brooklyn</b><br>This is a Leaflet map.").openPopup();
+baraclays_pizza.bindPopup('<b>Fini Pizza Barclays Plaza Downtown Brooklyn</b><br>
+                          <img src="https://jenalyse13.github.io/GEG-212/GEG212 Images/Fini Pizza.jpg.webp" style="width: 100px; height: auto;">
+                          ').openPopup();
 
 // 2A Add a marker to the map for New York City
 var paneorama = L.marker([40.69426080526414, -73.84961585947472]).addTo(map);
 
 // 2B Add a popup to the marker
-paneorama.bindPopup("<b>Paneorama Bakery & Pastry Shop</b><br>This is a Leaflet map.").openPopup();
+paneorama.bindPopup('<b>Paneorama Bakery & Pastry Shop</b><br>
+                    <img src="https://jenalyse13.github.io/GEG-212/GEG212 Images/Paneorama.jpg" style="width: 100px; height: auto;">
+                          ').openPopup();
 
 
 // 3A Add a marker to the map for New York City
 var south_ferry = L.marker([40.70139399691619, -74.01330340207514]).addTo(map);
 
 // 3B Add a popup to the marker
-south_ferry.bindPopup("<b>Staten Island South Ferry</b><br>This is a Leaflet map.").openPopup();
+south_ferry.bindPopup('<b>Staten Island South Ferry</b><br>
+                       <img src="https://jenalyse13.github.io/GEG-212/GEG212 Images/Staten_Island_South_Ferry.jpg" style="width: 100px; height: auto;">
+                          ').openPopup();
 
 // 4A Add a marker to the map for New York City
 var battery_park = L.marker([40.70294229941433, -74.01536271731277]).addTo(map);
 
 // 4B Add a popup to the marker
-battery_park.bindPopup("<b>The Battery Park</b><br>This is a Leaflet map.").openPopup();
-
+battery_park.bindPopup("<b>The Battery Park</b><br>
+                       <img src="https://jenalyse13.github.io/GEG-212/GEG212 Images/Battery-Park-Manhattan.jpg" style="width: 100px; height: auto;">
+                          ').openPopup();
 
 
 // Load the GeoJSON line file
