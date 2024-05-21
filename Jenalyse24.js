@@ -92,7 +92,7 @@ function getFeatureStyle(feature) {
     };
 }
 // Load the GeoJSON polygon file
-fetch('https://aurashktest.github.io/aurashktest/hev.geojson')
+fetch('https://jenalyse13.github.io/GEG-212/Hurricane Evacuation Zones.geojson')
 .then(response => response.json())
 .then(geojson => {
     // Add the GeoJSON polygons to the map with customized style
