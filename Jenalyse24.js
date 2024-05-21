@@ -102,6 +102,26 @@ fetch('https://jenalyse13.github.io/GEG-212/Fini Pizza Barclays Polygon.geojson'
     console.error('Error loading GeoJSON file:', error);
 });
 
+var categoryColors = {
+    "1": "red",
+    "2": "orange",
+    "3": "yellow",
+    "4": "green",
+    "X": "gray" // Default color for other categories
+};
+
+
+// Function to set style based on category
+function getFeatureStyle(feature) {
+    var category = feature.properties.hurricane_; // Adjust property name
+    var color = categoryColors[category] || "gray"; // Default color if category not found
+    var fillOpacity = category === "X" ? 0 : 0.1; // Set fill opacity to 0 for "X" category
+    return {
+        fillColor: color,
+        fillOpacity: fillOpacity,
+    };
+}
+
 // 2 Load the GeoJSON polygon file
 fetch('https://jenalyse13.github.io/GEG-212/Paneorama polygon.geojson')
 .then(response => response.json())
