@@ -11,3 +11,45 @@ var marker = L.marker([40.683311452523625, -73.97619537068677]).addTo(map);
 
 // Add a popup to the marker
 marker.bindPopup("<b>Fini Pizza Barclays Plaza Downtown Brooklyn</b><br>This is a Leaflet map.").openPopup();
+
+// Load the GeoJSON line file
+fetch('https://aurashktest.github.io/aurashktest/akdaytimeroute.geojson')
+    .then(response => response.json())
+    .then(geojson => {
+        // Customize the style of the line
+        var lineStyle = {
+            color: 'red', // Change color as needed
+            weight: 5, // Change weight as needed
+            opacity: 0.7 // Change opacity as needed
+        };
+
+        // Add the GeoJSON line to the map
+        L.geoJSON(geojson, {
+            style: lineStyle
+        }).addTo(map);
+    })
+    .catch(error => {
+        console.error('Error loading GeoJSON file:', error);
+    });
+
+
+// Load the GeoJSON line file
+fetch('https://aurashktest.github.io/aurashktest/akdaytimeroute.geojson')
+    .then(response => response.json())
+    .then(geojson => {
+        // Customize the style of the line
+        var lineStyle = {
+            color: 'red', // Change color as needed
+            weight: 5, // Change weight as needed
+            opacity: 0.7 // Change opacity as needed
+        };
+
+        // Add the GeoJSON line to the map
+        L.geoJSON(geojson, {
+            style: lineStyle
+        }).addTo(map);
+    })
+    .catch(error => {
+        console.error('Error loading GeoJSON file:', error);
+    });
+
