@@ -40,7 +40,7 @@ battery_park.bindPopup("<b>The Battery Park</b><br>
                           ').openPopup();
 
 
-// Load the GeoJSON line file
+// Daytime: Load the GeoJSON line file
 fetch('https://jenalyse13.github.io/GEG-212/Jenalyse_daytimeroute.geojson')
     .then(response => response.json())
     .then(geojson => {
@@ -63,7 +63,7 @@ fetch('https://jenalyse13.github.io/GEG-212/Jenalyse_daytimeroute.geojson')
     });
 
 
-// Load the GeoJSON line file
+// Nighttime:Load the GeoJSON line file
 fetch('https://jenalyse13.github.io/GEG-212/Jenalyse_nighttimeroute.geojson')
     .then(response => response.json())
     .then(geojson => {
@@ -82,4 +82,80 @@ fetch('https://jenalyse13.github.io/GEG-212/Jenalyse_nighttimeroute.geojson')
     .catch(error => {
         console.error('Error loading GeoJSON file:', error);
     });
+
+// 1 Load the GeoJSON polygon file
+fetch('https://jenalyse13.github.io/GEG-212/Fini Pizza Barclays Polygon.geojson')
+.then(response => response.json())
+.then(geojson => {
+    // Customize the style of the polygon
+    var polygonStyle = {
+        fillColor: 'black', // Fill color
+        fillOpacity: 0.5, // Fill opacity
+    };
+
+    // Add the GeoJSON polygon to the map
+    L.geoJSON(geojson, {
+        style: polygonStyle
+    }).addTo(map);
+})
+.catch(error => {
+    console.error('Error loading GeoJSON file:', error);
+});
+
+// 2 Load the GeoJSON polygon file
+fetch('https://jenalyse13.github.io/GEG-212/Paneorama polygon.geojson')
+.then(response => response.json())
+.then(geojson => {
+    // Customize the style of the polygon
+    var polygonStyle = {
+        fillColor: 'black', // Fill color
+        fillOpacity: 0.5, // Fill opacity
+    };
+
+    // Add the GeoJSON polygon to the map
+    L.geoJSON(geojson, {
+        style: polygonStyle
+    }).addTo(map);
+})
+.catch(error => {
+    console.error('Error loading GeoJSON file:', error);
+});
+
+// 3 Load the GeoJSON polygon file
+fetch('https://jenalyse13.github.io/GEG-212/Staten Island South Ferry Polygon.geojson')
+.then(response => response.json())
+.then(geojson => {
+    // Customize the style of the polygon
+    var polygonStyle = {
+        fillColor: 'black', // Fill color
+        fillOpacity: 0.5, // Fill opacity
+    };
+
+    // Add the GeoJSON polygon to the map
+    L.geoJSON(geojson, {
+        style: polygonStyle
+    }).addTo(map);
+})
+.catch(error => {
+    console.error('Error loading GeoJSON file:', error);
+});
+
+// 4 Load the GeoJSON polygon file
+fetch('https://jenalyse13.github.io/GEG-212/Battery Park Polygon.geojson')
+.then(response => response.json())
+.then(geojson => {
+    // Customize the style of the polygon
+    var polygonStyle = {
+        fillColor: 'black', // Fill color
+        fillOpacity: 0.5, // Fill opacity
+    };
+
+    // Add the GeoJSON polygon to the map
+    L.geoJSON(geojson, {
+        style: polygonStyle
+    }).addTo(map);
+})
+.catch(error => {
+    console.error('Error loading GeoJSON file:', error);
+});
 
