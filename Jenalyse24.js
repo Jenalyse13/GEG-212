@@ -13,12 +13,14 @@ var marker = L.marker([40.683311452523625, -73.97619537068677]).addTo(map);
 marker.bindPopup("<b>Fini Pizza Barclays Plaza Downtown Brooklyn</b><br>This is a Leaflet map.").openPopup();
 
 // Load the GeoJSON line file
-fetch('https://aurashktest.github.io/aurashktest/akdaytimeroute.geojson')
+fetch('https://jenalyse13.github.io/GEG-212/Jenalyse_daytimeroute.geojson')
     .then(response => response.json())
     .then(geojson => {
         // Customize the style of the line
         var lineStyle = {
-            color: 'red', // Change color as needed
+            color: 'red', // Change color as neededFDR ?
+"
+
             weight: 5, // Change weight as needed
             opacity: 0.7 // Change opacity as needed
         };
@@ -34,7 +36,7 @@ fetch('https://aurashktest.github.io/aurashktest/akdaytimeroute.geojson')
 
 
 // Load the GeoJSON line file
-fetch('https://aurashktest.github.io/aurashktest/akdaytimeroute.geojson')
+fetch('https://jenalyse13.github.io/GEG-212/Jenalyse_nighttimeroute.geojson')
     .then(response => response.json())
     .then(geojson => {
         // Customize the style of the line
